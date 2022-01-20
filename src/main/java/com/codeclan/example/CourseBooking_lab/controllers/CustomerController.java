@@ -31,4 +31,18 @@ public class CustomerController {
             return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
         }
     }
+
+//    @GetMapping(value = "customers/courseLocation")
+//    public ResponseEntity<List<Customer>> filterCustomerByCourseAndTown(@RequestParam(name = "name") String name, @RequestParam(name = "town") String town){
+//        return new ResponseEntity<>(customerRepository.findCustomerByBookingsCourseNameAndBookingsCourseTown(name, town), HttpStatus.OK);
+//    }
+    @GetMapping(value = "customers/courseLocation")
+    public ResponseEntity<List<Customer>> filterCustomerByTownAndCourse(@RequestParam(name = "town") String town, @RequestParam(name = "course") String course){
+        return new ResponseEntity<>(customerRepository.findCustomerByTownAndBookingsCourseName(town, course), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "customers/age/town/course")
+    public ResponseEntity<List<Customer>> filterCustomerByAgeTownAndCourse(@RequestParam(name = "age") Integer age, @RequestParam(name = "town") String town, @RequestParam(name = "course") String course){
+        return new ResponseEntity<>(customerRepository.findCustomerByAgeAndTownAndBookingsCourseName(age, town, course), HttpStatus.OK);
+    }
 }
