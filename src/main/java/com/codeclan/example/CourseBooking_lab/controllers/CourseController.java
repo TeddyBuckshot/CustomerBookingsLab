@@ -42,6 +42,6 @@ public class CourseController {
         return new ResponseEntity<>(courseRepository.findCourseBystarRating(rating), HttpStatus.OK);
     }
 
-    @GetMapping(value = "courses/customers")
-    public ResponseEntity<List<Customer>>
+
+
 }

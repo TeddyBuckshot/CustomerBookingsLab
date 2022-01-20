@@ -22,8 +22,13 @@ public class CustomerController {
         return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
     }
 
-//    @GetMapping(value = "/customers/course")
-//    public ResponseEntity<List<Customer>> filterCustomerByCourseName(@RequestParam(name = "course") String course){
-//        return new ResponseEntity<>(customerRepository.findCustomerByCourse(course), HttpStatus.OK);
-//    }
+    @GetMapping(value = "/customers/courses")
+    public ResponseEntity<List<Customer>> filterCustomerByCourseName(
+            @RequestParam(name = "course_id", required = false) Long id) {
+        if (id!=null){
+        return new ResponseEntity<>(customerRepository.findCustomerByBookingsCourseId(id), HttpStatus.OK);
+        } else{
+            return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.OK);
+        }
+    }
 }
