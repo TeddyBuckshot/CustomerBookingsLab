@@ -42,6 +42,8 @@ public class CourseController {
         return new ResponseEntity<>(courseRepository.findCourseBystarRating(rating), HttpStatus.OK);
     }
 
-
-
+    @GetMapping(value = "courses/customers")
+    public ResponseEntity<List<Course>> filterCourseByCustomer(@RequestParam(name = "customer_id") Long id){
+        return new ResponseEntity<>(courseRepository.findCourseByBookingsCustomerId(id), HttpStatus.OK);
+    }
 }
